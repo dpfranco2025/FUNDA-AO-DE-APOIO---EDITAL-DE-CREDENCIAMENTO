@@ -1,0 +1,11 @@
+{
+  "name": "portal-credenciamento-fa",
+  "compatibility_date": "2026-09-03",
+  // Site 100% estático (ver next.config.ts: output "export"). Declarar
+  // "assets" sem "main" diz à Cloudflare para servir os arquivos de out/
+  // diretamente, sem tentar rodar o adaptador OpenNext/SSR para Next.js.
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
