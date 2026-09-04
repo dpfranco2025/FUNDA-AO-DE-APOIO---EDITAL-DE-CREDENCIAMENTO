@@ -18,6 +18,8 @@ const OBRIGATORIEDADE_CLASSES: Record<Documento["obrigatorio"], string> = {
 };
 
 export function DocumentCard({ documento }: { documento: Documento }) {
+  const urlVisualizar = documento.urlVisualizar ?? documento.urlDownloadPdf;
+
   return (
     <article className="flex flex-col gap-3 rounded-xl border border-neutral-200 bg-white p-5">
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -71,11 +73,12 @@ export function DocumentCard({ documento }: { documento: Documento }) {
       <div className="mt-1 flex flex-wrap gap-2">
         {documento.disponivel ? (
           <>
-            {documento.urlVisualizar && (
+            {urlVisualizar && (
               <Button
-                href={documento.urlVisualizar}
+                href={urlVisualizar}
                 variant="secondary"
-                external={!documento.urlVisualizar.startsWith("/")}
+                external={!documento.urlVisualizar || urlVisualizar === documento.urlDownloadPdf}
+                ariaLabel={`Visualizar ${documento.numero ?? documento.titulo}`}
               >
                 <Eye className="h-4 w-4" aria-hidden /> Visualizar
               </Button>
